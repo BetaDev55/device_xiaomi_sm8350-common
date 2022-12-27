@@ -41,3 +41,4 @@ allow hal_fingerprint_default vendor_fingerprint_data_file:file create_file_perm
 allow hal_fingerprint_default vendor_sysfs_fod:file rw_file_perms;
 
 allow hal_fingerprint_default rootfs:dir { read open };
+allow hal_fingerprint_default system_data_root_file:dir r_dir_perms;
