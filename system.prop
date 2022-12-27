@@ -25,6 +25,9 @@ ro.config.low_ram=false
 ro.lmk.use_minfree_levels=true
 ro.lmk.log_stats=true
 
+# Mantainer
+ro.spark.maintainer=BetaDev55
+
 # Media
 media.aac_51_output_enabled=true
 media.stagefright.enable-aac=true
