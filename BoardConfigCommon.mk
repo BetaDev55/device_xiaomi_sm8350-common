@@ -118,6 +118,10 @@ DEVICE_MANIFEST_FILE += \
     $(COMMON_PATH)/hidl/manifest_lineage.xml
 endif
 
+# NeverAllows
+
+SELINUX_IGNORE_NEVERALLOWS := true
+
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 131072
 BOARD_BOOTIMAGE_PARTITION_SIZE := 201326592
