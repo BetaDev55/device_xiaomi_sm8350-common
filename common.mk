@@ -26,6 +26,10 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 # API
 PRODUCT_SHIPPING_API_LEVEL := 30
 
+# Apn
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/etc/apns-conf.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/apns-conf.xml
+
 # Audio
 PRODUCT_PACKAGES += \
     libqcompostprocbundle \
@@ -64,7 +68,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_yupik/audio_policy_configuration.xml
 
 PRODUCT_COPY_FILES += \
-    frameworks/av/services/audiopolicy/config/a2dp_in_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_in_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/audio_policy_volumes.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_volumes.xml \
     frameworks/av/services/audiopolicy/config/bluetooth_audio_policy_configuration.xml:/$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/default_volume_tables.xml:$(TARGET_COPY_OUT_VENDOR)/etc/default_volume_tables.xml \
@@ -90,10 +93,6 @@ AB_OTA_POSTINSTALL_CONFIG += \
 PRODUCT_PACKAGES += \
     checkpoint_gc \
     otapreopt_script
-
-# APN
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/etc/apns-conf.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/apns-conf.xml
 
 # Bluetooth
 PRODUCT_PACKAGES += \
@@ -125,10 +124,15 @@ PRODUCT_PACKAGES_DEBUG += \
 
 # Camera
 PRODUCT_PACKAGES += \
+    GCamGOPrebuilt-V3 \
     android.hardware.camera.provider@2.4-impl \
     android.hardware.camera.provider@2.4-service_64 \
     vendor.qti.hardware.camera.device@1.0.vendor \
     vendor.qti.hardware.camera.postproc@1.0.vendor
+
+PRODUCT_PACKAGES += \
+    libMegviiFacepp-0.5.2 \
+    libmegface
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/camera_cnf.txt:$(TARGET_COPY_OUT_VENDOR)/etc/camera/camera_cnf.txt
@@ -181,14 +185,14 @@ PRODUCT_COPY_FILES += \
 
 # DRM
 PRODUCT_PACKAGES += \
-    android.hardware.drm@1.4-service.clearkey
+    android.hardware.drm@1.4.vendor \
+    android.hardware.drm-service.clearkey
 
 # Fastbootd
 PRODUCT_PACKAGES += \
     fastbootd
 
 # Fingerprint
-
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml
 
@@ -394,7 +398,7 @@ PRODUCT_COPY_FILES += \
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
-    $(LOCAL_PATH)/overlay-aosp
+    $(LOCAL_PATH)/overlay-aosp 
 
 PRODUCT_ENFORCE_RRO_TARGETS := *
 
@@ -422,6 +426,10 @@ PRODUCT_COPY_FILES += \
 # Recovery
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/etc/init.recovery.qcom.rc:$(TARGET_COPY_OUT_RECOVERY)/root/init.recovery.qcom.rc
+
+# Remove unwanted packages
+PRODUCT_PACKAGES += \
+    RemovePackages
 
 # RIL
 PRODUCT_PACKAGES += \
