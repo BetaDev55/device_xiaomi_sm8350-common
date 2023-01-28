@@ -121,7 +121,7 @@
 
          Refer to power.h for details.
     -->
-    <bool name="config_powerDecoupleInteractiveModeFromDisplay">true</bool>
+    <bool name="config_powerDecoupleInteractiveModeFromDisplay">false</bool>
 
     <!-- Flag specifying whether VoLTE is available on device -->
     <bool name="config_device_volte_available">true</bool>
@@ -164,18 +164,6 @@
     <!-- Whether the Unprocessed audio source supports the required frequency range and level -->
     <bool name="config_supportAudioSourceUnprocessed">true</bool>
 
-    <!-- Idle current for bluetooth controller. 0 by default-->
-    <integer name="config_bluetooth_idle_cur_ma">6</integer>
-
-    <!-- Rx current for bluetooth controller. 0 by default-->
-    <integer name="config_bluetooth_rx_cur_ma">28</integer>
-
-    <!-- Tx current for bluetooth controller. 0 by default-->
-    <integer name="config_bluetooth_tx_cur_ma">36</integer>
-
-    <!-- Operating voltage for bluetooth controller. 0 by default-->
-    <integer name="config_bluetooth_operating_voltage_mv">3700</integer>
-
     <!-- Boolean indicating whether the HWC setColorTransform function can be performed efficiently
          in hardware. -->
     <bool name="config_setColorTransformAccelerated">true</bool>
@@ -212,6 +200,21 @@
     <!-- Whether device supports double tap to wake -->
     <bool name="config_supportDoubleTapWake">true</bool>
 
+    <!-- The default intensity level for haptic feedback. See
+         Settings.System.HAPTIC_FEEDBACK_INTENSITY more details on the constant values and
+         meanings. -->
+    <integer name="config_defaultHapticFeedbackIntensity">2</integer>
+
+    <!-- The default intensity level for notification vibrations. See
+         Settings.System.NOTIFICATION_VIBRATION_INTENSITY more details on the constant values and
+         meanings. -->
+    <integer name="config_defaultNotificationVibrationIntensity">3</integer>
+
+    <!-- The default intensity level for notification vibrations. See
+         Settings.System.RING_VIBRATION_INTENSITY more details on the constant values and
+         meanings. -->
+    <integer name="config_defaultRingVibrationIntensity">3</integer>
+
     <!-- List of biometric sensors on the device, in decreasing strength. Consumed by AuthService
          when registering authenticators with BiometricService. Format must be ID:Modality:Strength,
          where: IDs are unique per device, Modality as defined in BiometricAuthenticator.java,
@@ -223,58 +226,16 @@
 
     <!-- Default list of files pinned by the Pinner Service -->
     <string-array translatable="false" name="config_defaultPinnerServiceFiles">
-        <item>/system/framework/framework.jar</item>
-	<item>/system/framework/services.jar</item>
-	<item>/apex/com.android.art/javalib/core-oj.jar</item>
-	<item>/apex/com.android.art/javalib/core-libart.jar</item>
-	<item>/system_ext/priv-app/SystemUIGoogle/SystemUIGoogle.apk</item>
-	<item>/system/bin/surfaceflinger</item>
-	<item>/system/framework/ext.jar</item>
-	<item>/system/lib/libEGL.so</item>
-	<item>/system/lib/libGLESv1_CM.so</item>
-	<item>/system/lib/libGLESv2.so</item>
-	<item>/system/lib/libGLESv3.so</item>
-	<item>/system/lib/libgui.so</item>
-	<item>/system/lib/libhwui.so</item>
-	<item>/system/lib/libui.so</item>
-	<item>/system/lib/libvulkan.so</item>
-	<item>/system/lib64/libEGL.so</item>
-	<item>/system/lib64/libGLESv1_CM.so</item>
-	<item>/system/lib64/libGLESv2.so</item>
-	<item>/system/lib64/libGLESv3.so</item>
-	<item>/system/lib64/libgui.so</item>
-	<item>/system/lib64/libhwui.so</item>
-	<item>/system/lib64/libui.so</item>
-	<item>/system/lib64/libvulkan.so</item>
-	<item>/vendor/lib/libcamxexternalformatutils.so</item>
-	<item>/vendor/lib/egl/eglSubDriverAndroid.so</item>
-	<item>/vendor/lib/egl/libEGL_adreno.so</item>
-	<item>/vendor/lib/egl/libGLESv1_CM_adreno.so</item>
-	<item>/vendor/lib/egl/libGLESv2_adreno.so</item>
-	<item>/vendor/lib/hw/vulkan.adreno.so</item>
-	<item>/vendor/lib/libCB.so</item>
-	<item>/vendor/lib/libOpenCL.so</item>
-	<item>/vendor/lib/libadreno_utils.so</item>
-	<item>/vendor/lib/libgsl.so</item>
-	<item>/vendor/lib/libllvm-glnext.so</item>
-	<item>/vendor/lib/libllvm-qcom.so</item>
-	<item>/vendor/lib64/libcamxexternalformatutils.so</item>
-	<item>/vendor/lib64/libipebpsstriping.so</item>
-	<item>/vendor/lib64/egl/eglSubDriverAndroid.so</item>
-	<item>/vendor/lib64/egl/libEGL_adreno.so</item>
-	<item>/vendor/lib64/egl/libGLESv1_CM_adreno.so</item>
-	<item>/vendor/lib64/egl/libGLESv2_adreno.so</item>
-	<item>/vendor/lib64/hw/vulkan.adreno.so</item>
-	<item>/vendor/lib64/libCB.so</item>
-	<item>/vendor/lib64/libOpenCL.so</item>
-	<item>/vendor/lib64/libadreno_utils.so</item>
-	<item>/vendor/lib64/libgsl.so</item>
-	<item>/vendor/lib64/libllvm-glnext.so</item>
-	<item>/vendor/lib64/libllvm-qcom.so</item>
+        <item>"/system/framework/framework.jar"</item>
+        <item>"/system/framework/services.jar"</item>
+        <item>"/apex/com.android.art/javalib/core-oj.jar"</item>
+        <item>"/apex/com.android.art/javalib/core-libart.jar"</item>
+        <item>"/system_ext/priv-app/SystemUIGoogle/SystemUIGoogle.apk"</item>
+        <item>"/system/bin/surfaceflinger"</item>
     </string-array>
 
     <!-- Should the pinner service pin the Home application? -->
-    <bool name="config_pinnerHomeApp">false</bool>
+    <bool name="config_pinnerHomeApp">true</bool>
 
     <!-- Enable doze mode
          ComponentName of a dream to show whenever the system would otherwise have gone to sleep. -->
@@ -349,35 +310,39 @@
          available on some devices. -->
     <bool name="config_enableHapticTextHandle">true</bool>
 
-    <string name="db_default_journal_mode" translatable="false">MEMORY</string>
-
-    <!-- The database synchronization mode when using the default journal mode.
-         FULL is safest and preserves durability at the cost of extra fsyncs.
-         NORMAL also preserves durability in non-WAL modes and uses checksums to ensure
-         integrity although there is a small chance that an error might go unnoticed.
-         Choices are: FULL, NORMAL, OFF. -->
-    <string name="db_default_sync_mode" translatable="false">OFF</string>
-
-    <!-- The database synchronization mode when using Write-Ahead Logging.
-         From https://www.sqlite.org/pragma.html#pragma_synchronous:
-         WAL mode is safe from corruption with synchronous=NORMAL, and probably DELETE mode is safe
-         too on modern filesystems. WAL mode is always consistent with synchronous=NORMAL, but WAL
-         mode does lose durability. A transaction committed in WAL mode with
-         synchronous=NORMAL might roll back following a power loss or system crash.
-         Transactions are durable across application crashes regardless of the synchronous setting
-         or journal mode. The synchronous=NORMAL setting is a good choice for most applications
-         running in WAL mode.
-         Choices are: FULL, NORMAL, OFF. -->
-    <string name="db_wal_sync_mode" translatable="false">OFF</string>
-        <!-- Smart charging -->
-        <bool name="config_smartChargingAvailable">true</bool>
-        <string name="config_smartChargingSysfsNode" translatable="false">/sys/class/power_supply/battery/input_suspend</string>
-        <string name="config_smartChargingSuspendValue" translatable="false">1</string>
-        <string name="config_smartChargingResumeValue" translatable="false">0</string>
-    
         <!-- Battery Health -->
         <string name="config_batChargeCycle">/sys/class/power_supply/bms/cycle_count</string>
         <string name="config_batDesCap">/sys/class/power_supply/bms/charge_full_design</string>
         <string name="config_batCurCap">/sys/class/power_supply/bms/charge_full</string>
         <bool name="config_supportBatteryHealth">true</bool>
+    <!-- Whether the device supports Smart Pixels -->
+    <bool name="config_supportSmartPixels">true</bool>
+
+    <!-- The list of package IDs that are allowed to use aux cameras.
+         NOTE: If this list is empty then all apps will be able to use aux cameras. -->
+    <string-array name="config_cameraAuxPackageAllowList" translatable="false">
+        <item>com.android.camera</item>
+        <item>com.google.camera</item>
+        <item>org.lineageos.aperture</item>
+        <item>org.lineageos.aperture.dev</item>
+    </string-array>
+
+    <!-- The list of package IDs that are not allowed to use aux cameras. -->
+    <string-array name="config_cameraAuxPackageExcludeList" translatable="false">
+        <item>org.telegram.messenger</item>
+        <item>com.microsoft.teams</item>
+        <item>com.discord</item>
+        <item>us.zoom.videomeetings</item>
+        <item>org.thunderdog.challegram</item>
+        <item>tw.nekomimi.nekogram</item>
+    </string-array>
+
+    <!-- Smart charging -->
+    <string name="config_SmartChargingSysfsNode" translatable="false">/sys/class/qcom-battery/input_suspend</string>
+    <string name="config_SmartChargingSuspendValue" translatable="false">1</string>
+    <string name="config_SmartChargingResumeValue" translatable="false">0</string>
+
+    <!-- Delay that allows some content to arrive at the display before switching
+         from DOZE to ON, in millis. -->
+    <integer name="config_wakeUpDelayDoze">32</integer>
 </resources>

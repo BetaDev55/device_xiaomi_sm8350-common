@@ -1,4 +1,2 @@
 allow init adsprpcd_file:file mounton;
 allow init hal_fingerprint_default:process { ptrace };
-# Allow init to wrtie to sysfs_battery_supply
-allow init sysfs_battery_supply:file { setattr };
